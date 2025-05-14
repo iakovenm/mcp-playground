@@ -1,65 +1,91 @@
-# QA Automation Framework for Hubstaff
+# AG Grid Testing Framework with Playwright
 
-This framework is a robust and scalable solution for automation tech task for Hubstaff. It leverages modern tools like Playwright, Javascript, MailSlurp to ensure high-quality testing practices.
+This framework demonstrates how to effectively test AG Grid functionality using Playwright and JavaScript. It provides a robust solution for automating AG Grid interactions with a focus on maintainability and reliability.
 
 ## 🌟 Highlights
 
-- **Email Automation**: Uses MailSlurp API to handle email workflows, including inbox creation, email retrieval, and link extraction for verification processes.
+- **AG Grid Integration**: Specialized tools and methods for interacting with AG Grid components including filtering, sorting, and cell value manipulation.
 - **Modular Architecture**: Implements the Page Object Model (POM) for better code organization and maintainability.
-- **Detailed Reports**: Generates insightful reports using Playwright's HTML reporting and Junit for better debugging and analysis.
-- **CI/CD Ready**: Integrated with GitHub Actions for automated test execution, reporting, and artifact management.
-- **Environment Management**: Securely handles credentials and configurations through environment variables.
+- **Robust Selectors**: Uses ARIA attributes and role-based selectors for reliable element identification.
+- **Detailed Reports**: Generates insightful reports using Playwright's HTML reporting for better debugging and analysis.
+- **Maintainable Tests**: Clear and concise test structure that's easy to understand and extend.
 
 ## 🛠️ Setup Guide
 
 1. Clone the repository and navigate to the project directory.
-2. Install the required dependencies using `npm install`.
-3. Install the necessary browsers for Playwright.
-4. Create a `.env` file and configure the following variables:
-- `EMAIL_API_KEY`: Your MailSlurp email API key.
+2. Install the required dependencies:
+   ```bash
+   npm install
+   ```
+3. Install Playwright browsers:
+   ```bash
+   npx playwright install
+   ```
 
-## 🔍 Build and Test on a local machine
+## 🔍 Running Tests
 
-To set up and run your tests in test location (currently set only one test env):
+Run all tests:
+```bash
+npx playwright test
+```
 
--   $env:TEST_ENV="test"
--   npx playwright test OR npx playwright test --grep '@test' (where @test is a tag of the test you wish to run)
+Run specific test file:
+```bash
+npx playwright test tests/ag-grid.spec.js
+```
+
+Run tests with specific tag:
+```bash
+npx playwright test --grep '@ag-grid'
+```
 
 ## 📈 Reporting
 
 Generate and view detailed HTML reports for test results:
-
--   npx playwright show-report (to show report for the last test run)
+```bash
+npx playwright show-report
+```
 
 ## 🔑 Key Features
 
-### Email Workflow Automation
+### AG Grid Testing Capabilities
 
-This framework integrates with MailSlurp to automate email-related tasks. It dynamically creates inboxes, retrieves emails, and extracts links for verification. To use this feature, sign up at [MailSlurp](https://www.mailslurp.com/), obtain your API key, and configure it in the `.env` file.
+The framework provides robust capabilities for testing AG Grid components:
 
-### Continuous Integration
+#### Grid Interaction Methods
+- **Column Filtering**: Test column filtering functionality with support for various filter types
+- **Row Selection**: Verify row selection behavior
+- **Cell Operations**: Test cell value updates and validation
+- **Grid Navigation**: Methods for reliable grid traversal and element location
 
-The GitHub Actions workflow automates the following:
-- Installing dependencies
-- Running tests
-- Generating reports
-- Storing artifacts
-- Publishing results to Uploadcare
+#### Page Object Pattern Implementation
+The framework implements a comprehensive Page Object Model for AG Grid testing:
 
-### Data Generation
+```javascript
+// Example usage of AG Grid page object
+const grid = new AgGridPage(page);
+await grid.goto();
+await grid.filterColumn("Language", "English");
+await grid.verifyCell(0, 4, "English");
+```
 
-The framework supports data generation mechanism. It provides functions to create random data such as names, email addresses, and passwords. This helps in generating unique test data for each test run, ensuring test reliability and avoiding data conflicts.
+### Reliable Element Selection
 
-To use the data generation feature, you can utilize the following methods:
+The framework uses ARIA attributes and role-based selectors for robust element identification:
+- Uses `[role="grid"]` for grid container
+- Uses `[role="row"]` for row elements
+- Uses `[role="columnheader"]` for column headers
+- Uses `[aria-colindex]` for precise cell targeting
 
-- `generateRandomName()`: Generates a random name.
-- `generateRandomEmail()`: Generates a random email address.
-- `generateRandomPassword()`: Generates a random password.
+### Available VS Code Tasks
 
-## 🔒 Security Recommendations
+The framework includes pre-configured VS Code tasks for common operations:
+- **Run All Tests**: Execute all test suites
+- **Run Tests (Headed)**: Run tests with browser visible
+- **Show Test Report**: Open the test results report
+- **Start MCP Server**: Start the Model Context Protocol server
 
-- Avoid committing sensitive data like API keys to the repository.
-- Use `.env` files for local development and add them to `.gitignore`
-- Store sensitive information in GitHub Secrets or other secret storages for CI/CD pipelines. For current implementation the following secrets need to be set up on Github in order to be able to run tests in Github Actions:
- 
- EMAIL_API_KEY, TEST_USER_EMAIL, TEST_USER_PASSWORD, TEST_USER_FIRST_NAME, TEST_USER_LAST_NAME, UPLOADCARE_PUB_KEY
+To run these tasks in VS Code:
+1. Press `Ctrl+Shift+P`
+2. Type "Tasks: Run Task"
+3. Select the desired task from the list
