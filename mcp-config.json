@@ -1,0 +1,36 @@
+{
+  "browser": {
+    "browserName": "chromium",
+    "userDataDir": "",    "launchOptions": {
+      "headless": false
+    },
+    "contextOptions": {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "cdpEndpoint": "",
+    "remoteEndpoint": ""
+  },  "server": {
+    "port": 3333,
+    "host": "localhost"
+  },
+  "capabilities": [
+    "core",
+    "tabs",
+    "pdf",
+    "history",
+    "wait",
+    "files",
+    "install",
+    "testing"
+  ],
+  "vision": false,
+  "outputDir": "",
+  "network": {
+    "allowedOrigins": [],
+    "blockedOrigins": []
+  },
+  "noImageResponses": false
+}

@@ -1,0 +1,11 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="14.247491000000387">
+<testsuite name="ag-grid.spec.js" timestamp="2025-05-14T03:25:37.479Z" hostname="chromium" tests="1" failures="0" skipped="0" time="8.01" errors="0">
+<testcase name="AG Grid Performance Example › should filter the Language column and display filtered record" classname="ag-grid.spec.js" time="8.01">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\ag-grid-AG-Grid-Performanc-720fa-and-display-filtered-record-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>
